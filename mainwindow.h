@@ -24,6 +24,8 @@ private:
     Ui::MainWindow *ui;
     void writeToFile(QString writeLine, QString fileName);
     void readFromFile(QString fileName);
+    void process_line(QString input);
+    int countQSL(int hour);
 };
 
 #endif // MAINWINDOW_H
