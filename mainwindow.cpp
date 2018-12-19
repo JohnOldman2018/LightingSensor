@@ -40,13 +40,15 @@ void MainWindow::writeToFile(QString writeLine, QString fileName)
     outFile.write(qPrintable(writeLine + "\n"));
     outFile.close();
 }
-
+static double countLighting;
 void MainWindow::readFromFile(QString fileName)
 {
     QFile inputFile(fileName);
     if (!inputFile.open(QIODevice::ReadOnly | QIODevice::Text)){
         qDebug() << "Can't open file" ;
     }
+
+
     while (!inputFile.atEnd()) {
         QString line;
         int i=0;
@@ -77,7 +79,6 @@ void MainWindow::process_line(QString input)
         int h = dt.time().hour();
         ui->plainTextEdit->appendPlainText("Time is: " + qsTemp);
 
-    //    int countQSL(h);
         qsl.append(qsTemp);
         for (int i = 0; i < qsl.size(); ++i) {
             qDebug() << "QSL at "<<i << " : "<< qsl.at(i);
@@ -85,14 +86,15 @@ void MainWindow::process_line(QString input)
         QString outStr = qsl.join(';');
         outStr.append("\n");
         outFile.write(qPrintable(outStr));
+        writeToFile(outStr, "C:/Users/opilane/Desktop/build-LightingSensor-Desktop_Qt_5_11_2_MinGW_32bit-Debug/short.log");
     }
 }
-
-static double countLighting;
+/*
 int MainWindow::countQSL(int hour)
 {
-        countLighting = 0;
-
+    countLighting = 0;
+    int count = 0;
     ui->plainTextEdit->appendPlainText("Time is: " + hour);
+    count += count;
 
-}
+}*/
