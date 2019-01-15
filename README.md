@@ -1,1 +1,2 @@
 # LightingSensor
+GIT test
